@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>To-do list</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/26dfe7832d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <h3 style="color:#FFC000; text-align:center;">To-do list program</h3>
+    <div class="main-wrapper">
+      <section class="section pb-0 main-section bg-gradient-info">
+        <main class="container card shadow shadow-lg--hover mt-3" id="todolist">
+          <nav class="navbar navbar-light navbar-expand-md bg-faded">
+            <ul class="nav navbar-nav ml-auto w-100 space">
+              <li>
+                <a
+                  class="btn btn-link graysmall"
+                  data-toggle="pill"
+                  href="#done"
+                  >Done</a
+                >
+              </li>
+              <li class="active">
+                <a class="nav-link blacklarge" data-toggle="pill" href="#today"
+                  ><i class="fas fa-home" style="color:#ffc000"></i> Tasks
+                </a>
+              </li>
+              <li>
+                <a
+                  class="btn btn-link graysmall"
+                  data-toggle="pill"
+                  href="#incompleted"
+                  >Incompleted tasks</a
+                >
+              </li>
+            </ul>
+          </nav>
+          <div class="tab-content">
+            <div
+              class="oneline"
+              style="float: right; margin-right: 15px; margin-bottom: 10px"
+            >
+              <a
+                href=""
+                class="btn btn-warning btn-sm"
+                style="border-radius: 30px; font-size: 1em"
+                data-toggle="modal"
+                data-target="#modaladd"
+                ><i class="fas fa-plus"></i
+              ></a>
+            </div>
+            {% include "add.html" %}
+            <div id="done" class="tab-pane fade">{% include "done.html" %}</div>
+            <div id="today" class="tab-pane fade in active">
+              {% include "today.html" %}
+              <br />
+              {% include "all.html" %}
+            </div>
+            <div id="incompleted" class="tab-pane fade">
+              {% include "incom.html" %}
+            </div>
+          </div>
+        </main>
+      </section>
+    </div>
+    <br>
+    <div class = "dino"></div>
+
+  </body>
+</html>
+
+<style>
+  html, body {
+    background-color: #000000;
+    font-family: 'Titillium Web', sans-serif;
+
+  }
+  section.main-section {
+    height: 100%;
+  }
+  #todolist {
+    margin: 4rem auto;
+    padding: 2rem 3rem 3rem;
+    /* max-width: 750px; */
+    background: #ffffff;
+    color: #32325d;
+    box-shadow: 0 0 19px 10px rgba(100, 100, 100, 0.2);
+    overflow: visible;
+  }
+  .blacklarge {
+    font-size: xx-large;
+  }
+  .graysmall {
+    font-size: large;
+  }
+  .nav a{
+    color: gray;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .space {
+    display: flex;
+    justify-content: space-around;
+  }
+  .oneline {
+    display: inline-block;
+  }
+  .fontSizeTable {
+    font-size: 16px;
+  }
+  tr {
+    height: 55px;
+  }
+  thead {
+    background-color: #ffffe0;
+    color: #000000;
+  }
+
+  .dino {
+                background-image: url("https://www.borntodev.com/wp-content/uploads/2020/03/b2d.png");
+                border-radius: 50px;
+                background-size: contain;
+                width: 100px;
+                height: 100px;
+                background-color: slateblue;
+                position: absolute;
+                animation-name: move, spin;
+                animation-duration: 5s;
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
+            }
+
+            @keyframes move {
+                0% {
+                    background-color: slateblue;
+                    left: 0px;
+                }
+                25% {
+                    background-color: springgreen;
+                    left: 480px;
+                }
+                50% {
+                    background-color: khaki;
+                    left: 960px;
+                }
+                75% {
+                    background-color: salmon;
+                    left: 1440px;
+                }
+                100% {
+                    background-color: slateblue;
+                    left: 1920px;
+                }
+            }
+
+            @keyframes spin {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            } 
+  
+</style>
+
+<script></script>

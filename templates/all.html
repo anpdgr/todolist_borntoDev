@@ -1,0 +1,90 @@
+<h3><b>All tasks</b></h3>
+{% if not alltasks %} <h5 style="text-align: center;">There are no tasks yet</h5> 
+{% else %}
+<div id="form" style="float: right; margin-bottom: 15px">
+  <form action="/filter" method="post">
+    <div class="row">
+      <label>Due date : &nbsp;</label>
+      <input
+        class="form-control col"
+        type="date"
+        id="dDate"
+        name="dDateFilter"
+        value="{{dDateFilter}}"
+        required
+      />
+      <div class="col" style="float: right; margin-right: 10px">
+        <button class="btn btn-secondary" type="submit">search</button>
+      </div>
+    </div>
+  </form>
+  {% if isFilter == 1 %}
+  <a href="/" style="float: right; margin-right: 10px; margin-top: 5px"
+    >clear filter</a
+  >
+  {% endif %}
+</div>
+
+<div class="table-responsive">
+  <table class="table table-hover fontSizeTable">
+    <thead>
+      <tr>
+        <th scope="col" style="width: 5%">No.</th>
+        <th scope="col" style="width: 30%">Title</th>
+        <th scope="col" style="width: 20%">Priority</th>
+        <th scope="col" style="width: 20%">Tags</th>
+        <th scope="col" style="width: 10%">Due date</th>
+        <th scope="col" style="width: 5%">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in alltasks%} {% set i = loop.index %} {% if task.5 == 0 %}
+      <tr>
+        {% elif task.5 == 1 %}
+      </tr>
+
+      <tr style="background-color: rgba(220, 220, 220, 0.2)">
+        {% endif %}
+
+        <th scope="row">{{i}}</th>
+        <td>{{task.1}}</td>
+        <td>
+          {% if task.3 == 'Medium' %}
+          <i class="fas fa-exclamation" style="color: cornflowerblue"></i>&nbsp;
+          {% elif task.3 == 'High' %}
+          <i class="fas fa-exclamation" style="color: crimson"></i>
+          <i class="fas fa-exclamation" style="color: crimson"></i>
+
+          {% elif task.3 == 'Low' %} &nbsp;&nbsp;&nbsp; {% endif %} {{task.3}}
+        </td>
+        <td>
+            {% if task.4 %}
+            <i class="fas fa-tags"></i>
+            {% endif %}
+             {{task.4}}
+        </td>
+        <td>{{task.2}}</td>
+
+        <td>
+          <a
+            href=""
+            class="btn btn-secondary btn-xs"
+            data-toggle="modal"
+            data-target="#modaledit{{task.0}}"
+            ><i class="fas fa-edit"></i></a>
+
+            <a
+            href=""
+            class="btn btn-danger btn-xs"
+            data-toggle="modal"
+            data-target="#modaldlt{{task.0}}"
+            ><i class="fas fa-trash-alt"></i></a>
+        </td>
+        {% include "edit.html" %}
+        {% include "dlt.html" %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
